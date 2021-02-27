@@ -1,6 +1,7 @@
 import { CountdownContext } from '@/contexts/CountdownContext';
-import styles from '@/styles/components/Countdown.module.css';
 import { useContext} from 'react';
+import { FiX } from 'react-icons/fi';
+import styles from '@/styles/components/Countdown.module.css';
 
 const Countdown = () => {
   const { 
@@ -36,6 +37,7 @@ const Countdown = () => {
         className={styles.countdownButton} 
       >
         Ciclo encerrado
+        <img className={styles.checkCircle} src="/icons/check-circle.svg" alt="Check Circle" />
       </button>
       ) : (
         <>
@@ -46,6 +48,7 @@ const Countdown = () => {
           onClick={resetCountdown}
         >
           Abandonar ciclo
+          <FiX className={styles.buttonX} />
         </button>
         ) : (
           <button 
@@ -54,6 +57,7 @@ const Countdown = () => {
           onClick={startCountdown}
         >
           Iniciar um ciclo
+          <img className={styles.playArrow} src="/icons/play-arrow.svg" alt="Play Arrow" />
         </button>
         )}
         </>

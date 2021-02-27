@@ -76,5 +76,14 @@
   background: var(--white);
   color: var(--text);
   cursor: not-allowed;
-  opacity: 0.5;
+  border-bottom: 4px solid var(--green);
+}
+
+.playArrow, .checkCircle {
+  display: block;
+  padding-left: 1rem;
+}
+
+.buttonX {
+  margin-left: 1rem;
 }
