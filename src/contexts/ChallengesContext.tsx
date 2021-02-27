@@ -34,9 +34,9 @@ export const ChallengesProvider: React.FC<ChallengeProviderProps> = ({
   children,
   ...rest
  }) => {
-  const [level, setLevel] = useState(rest.level ?? 1);
-  const [currentExperience, setCurrentExperience] = useState(rest.currentExperience ?? 0);
-  const [challengesCompleted, setChallengesCompleted] = useState(rest.challengesCompleted ?? 0);
+  const [level, setLevel] = useState(rest.level);
+  const [currentExperience, setCurrentExperience] = useState(rest.currentExperience);
+  const [challengesCompleted, setChallengesCompleted] = useState(rest.challengesCompleted);
   const [isLevelUpModalOpen, setIsLevelUpModalOpen] = useState(false);
   const [activeChallenge, setActiveChallenge] = useState(null);
 
