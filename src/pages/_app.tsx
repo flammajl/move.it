@@ -1,12 +1,14 @@
 import { Provider } from 'next-auth/client';
-import { ChallengesProvider } from '@/contexts/ChallengesContext';
 
 import '@/styles/global.css';
+import { ActivePageProvider } from '@/contexts/ActivePageContext';
 
 function MyApp({ Component, pageProps }) {
   return (
     <Provider session={pageProps.session}>
-      <Component {...pageProps} />
+      <ActivePageProvider>
+        <Component {...pageProps} />
+      </ActivePageProvider>
     </Provider>
   )
 }

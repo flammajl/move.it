@@ -1,6 +1,5 @@
 import { useEffect } from 'react';
 import Head from 'next/head'
-import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { signIn, useSession } from 'next-auth/client';
 
@@ -40,9 +39,6 @@ const Home: React.FC = () => {
                   <img src="/icons/github.svg" alt=""/>
                   Faça login com seu Github para começar
                 </p>
-                <Link href="/challenge">
-                  <a style={{ color: '#fff', display: 'block', marginTop: '2rem' }}>Challenge ⇨</a>
-                </Link>
 
                 <button className={styles.signInButton} type="button" onClick={() => signIn('github')}>Sign in</button>
 
