@@ -1,0 +1,66 @@
+.sideMenu {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  padding: 2rem 1rem;
+
+  background: var(--white);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.sideMenu nav {
+  flex: 1;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content:center;
+
+  position: relative;
+}
+
+.sideMenu nav div {
+  position: relative;
+}
+
+.sideMenu nav div.active::before {
+  content: '';
+  height: 56px;
+  width: 4px;
+  display: block;
+  background: var(--blue);
+  border-radius: 0px 5px 5px 0px;
+  position: absolute;
+  left: -40px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.sideMenu nav div + div {
+  margin-top: 4rem;
+}
+
+.sideMenu nav svg {
+  color: var(--blue);
+}
+
+.sideMenu button {
+  border: 0;
+  background: 0;
+
+  display: flex;
+  align-items: center;
+
+  color: var(--blue);
+
+  font-size: 0.875rem;
+}
+
+.sideMenu button svg {
+  margin-right: 0.5rem;
+}
