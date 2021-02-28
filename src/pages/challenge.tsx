@@ -17,6 +17,7 @@ import SideBar from '@/components/SideBar';
 
 
 import styles from '@/styles/pages/Challenge.module.css'
+import axios from 'axios';
 
 interface HomeProps {
   level: number;
@@ -34,6 +35,18 @@ const Challenge: React.FC<HomeProps> = ({level, challengesCompleted, currentExpe
       router.push('/');
     }
   },[session]);
+
+  // useEffect(() => {
+  //   const postData =  async () => {
+  //     await axios.post('/api/user', {
+  //       user: session.user,
+  //       level,
+  //       challengesCompleted,
+  //       currentExperience
+  //     })
+  //   }
+  //   postData();
+  // }, []);
 
   return (
     <ChallengesProvider 

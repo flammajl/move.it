@@ -1,0 +1,40 @@
+.container {
+  height: 100vh;
+  max-width: 992px;
+  margin: 0 auto;
+  padding: 2.5rem 2rem;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.container h1 {
+  font-weight: 600;
+  font-size: 2.25rem;
+  color: var(--title);
+
+  margin-bottom: 2.5rem;
+}
+
+.container table {
+  border-collapse: collapse;
+}
+
+.container table tr th {
+  text-align: start;
+
+  padding-bottom: 1.5rem;
+}
+
+.container .row {
+  
+  background: var(--white);
+}
+
+.container .row td {
+  padding: 1rem;
+}
+
+.container .row td:first-child {
+  border-right: 4px solid var(--background);
+}

@@ -40,6 +40,7 @@ export const ChallengesProvider: React.FC<ChallengeProviderProps> = ({
   const [isLevelUpModalOpen, setIsLevelUpModalOpen] = useState(false);
   const [activeChallenge, setActiveChallenge] = useState(null);
 
+
   const experienceToNextLevel = Math.pow((level + 1) * 5, 2);
 
   useEffect(() => {
