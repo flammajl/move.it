@@ -1,3 +1,5 @@
+import React from 'react';
+
 import { Provider } from 'next-auth/client';
 
 import '@/styles/global.css';
@@ -10,7 +12,7 @@ function MyApp({ Component, pageProps }) {
         <Component {...pageProps} />
       </ActivePageProvider>
     </Provider>
-  )
+  );
 }
 
-export default MyApp
+export default MyApp;

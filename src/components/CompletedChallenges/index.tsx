@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import React, { useContext } from 'react';
 import { ChallengesContext } from '@/contexts/ChallengesContext';
 import styles from '@/styles/components/CompletedChallenges.module.css';
 
@@ -10,6 +10,6 @@ const CompletedChallenges = () => {
       <span>{challengesCompleted}</span>
     </div>
   );
-}
+};
 
 export default CompletedChallenges;

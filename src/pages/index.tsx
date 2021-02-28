@@ -1,7 +1,7 @@
-import { useEffect } from 'react';
-import Head from 'next/head'
-import { useRouter } from 'next/router';
+import React, { useEffect } from 'react';
+import Head from 'next/head';
 import { signIn, useSession } from 'next-auth/client';
+import { useRouter } from 'next/router';
 
 import styles from '@/styles/pages/Home.module.css';
 
@@ -11,43 +11,43 @@ const Home: React.FC = () => {
   const [session] = useSession();
 
   useEffect(() => {
-    if(session){
+    if (session) {
       router.push('/challenge');
     }
-  },[session]);
+  }, [session]);
 
   return (
     <div className={styles.containerWrapper}>
       <Head>
         <title>Início | Move.it</title>
       </Head>
-        <section>
-          <div>
-            <img src="/logo-bg.png" alt=""/>
-          </div>
+      <section>
+        <div>
+          <img src="/logo-bg.png" alt="" />
+        </div>
 
-          <div className={styles.introWrapper}>
-            <div className={styles.intro}>
-              <div>
-                <img src="/logo.svg" alt=""/>
-              </div>
-              
-              <div className={styles.login}>
-                <strong>Bem-vindo</strong>
+        <div className={styles.introWrapper}>
+          <div className={styles.intro}>
+            <div>
+              <img src="/logo.svg" alt="" />
+            </div>
 
-                <p>
-                  <img src="/icons/github.svg" alt=""/>
-                  Faça login com seu Github para começar
-                </p>
+            <div className={styles.login}>
+              <strong>Bem-vindo</strong>
 
-                <button className={styles.signInButton} type="button" onClick={() => signIn('github')}>Sign in</button>
+              <p>
+                <img src="/icons/github.svg" alt="" />
+                Faça login com seu Github para começar
+              </p>
 
-              </div>
+              <button className={styles.signInButton} type="button" onClick={() => signIn('github')}>Sign in</button>
+
             </div>
           </div>
-        </section>
+        </div>
+      </section>
     </div>
-  )
-}
+  );
+};
 
 export default Home;

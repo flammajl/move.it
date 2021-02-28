@@ -1,4 +1,5 @@
-import { useContext } from 'react';
+import React, { useContext } from 'react';
+
 import { useSession } from 'next-auth/client';
 
 import { ChallengesContext } from '@/contexts/ChallengesContext';
@@ -9,24 +10,25 @@ const Profile = () => {
 
   const [session] = useSession();
 
-
   return (
     <>
       {session && (
         <div className={styles.profileContainer}>
-        <img src={session.user.image} alt="Avatar do Perfil"/>
-        <div>
-          <strong>{session.user.name}</strong>
-          <p>
-            <img src="icons/level.svg" alt="Level"/>
-            Level {level}
-          </p>
+          <img src={session.user.image} alt="Avatar do Perfil" />
+          <div>
+            <strong>{session.user.name}</strong>
+            <p>
+              <img src="icons/level.svg" alt="Level" />
+              Level
+              {' '}
+              {level}
+            </p>
+          </div>
         </div>
-      </div>
       )}
     </>
-    
+
   );
-}
+};
 
 export default Profile;

@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import React, { createContext, useState } from 'react';
 
 interface ActivePageProviderData {
   activePage: 'challenge' | 'leaderboard';
@@ -12,15 +12,15 @@ export const ActivePageProvider: React.FC = ({ children }) => {
 
   const handleActivePage = (page: 'challenge' | 'leaderboard') => {
     setActivePage(page);
-  }
-
+  };
 
   return (
     <ActivePageContext.Provider value={{
       activePage,
-      handleActivePage
-    }}>
+      handleActivePage,
+    }}
+    >
       { children }
     </ActivePageContext.Provider>
-  )
-}
+  );
+};
