@@ -27,8 +27,11 @@
 }
 
 .container .row {
-  
   background: var(--white);
+}
+
+.container tbody .row + .row {
+  border-top: 0.5rem solid var(--background);
 }
 
 .container .row td {

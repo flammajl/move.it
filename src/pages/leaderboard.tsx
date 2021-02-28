@@ -2,11 +2,11 @@ import React, { useEffect, useState } from 'react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { useSession } from 'next-auth/client';
+import axios from 'axios';
 import SideBar from '@/components/SideBar';
 
 import styles from '@/styles/pages/Leaderboard.module.css';
-import Profile from '@/components/Profile';
-import axios from 'axios';
+import stylesProfile from '@/styles/components/Profile.module.css';
 
 interface RankingProps {
   level: number;
@@ -54,11 +54,22 @@ const Leaderboard: React.FC = () => {
         </thead>
 
         <tbody>
-          {ranking && ranking.map((rank) => (
+          {ranking && ranking.map((rank, index) => (
             <tr className={styles.row} key={rank.email}>
-              <td>1</td>
+              <td>{index + 1}</td>
               <td>
-                {rank.name}
+                <div className={stylesProfile.profileContainer}>
+                  <img src={rank.image} alt="Avatar do Perfil" />
+                  <div>
+                    <strong>{rank.name}</strong>
+                    <p>
+                      <img src="icons/level.svg" alt="Level" />
+                      Level
+                      {' '}
+                      {rank.level}
+                    </p>
+                  </div>
+                </div>
               </td>
               <td>
                 {rank.challengesCompleted}

@@ -1,6 +1,8 @@
 import React, { createContext, useEffect, useState } from 'react';
 import Cookies from 'js-cookie';
 import LevelUpModal from '@/components/LevelUpModal';
+import axios from 'axios';
+import { useSession } from 'next-auth/client';
 import challenges from '../../challenges.json';
 
 interface Challenge {
@@ -40,10 +42,29 @@ export const ChallengesProvider: React.FC<ChallengeProviderProps> = ({
   const [isLevelUpModalOpen, setIsLevelUpModalOpen] = useState(false);
   const [activeChallenge, setActiveChallenge] = useState(null);
 
-  const experienceToNextLevel = Math.pow((level + 1) * 5, 2);
+  const [session] = useSession();
+
+  const experienceToNextLevel = Math.pow((level + 1) * 4, 2);
 
   useEffect(() => {
     Notification.requestPermission();
+  }, []);
+
+  useEffect(() => {
+    const getData = async () => {
+      const response = await axios.get(`/api/user/${session.user.email}`);
+
+      Cookies.set('level', String(response.data.user.level));
+      Cookies.set('currentExperience', String(response.data.user.currentExperience));
+      Cookies.set('challengesCompleted', String(response.data.user.challengesCompleted));
+
+      setLevel(response.data.user.level);
+      setCurrentExperience(response.data.user.currentExperience);
+      setChallengesCompleted(response.data.user.challengesCompleted);
+    };
+    if (session && session.user) {
+      getData();
+    }
   }, []);
 
   useEffect(() => {
@@ -52,9 +73,40 @@ export const ChallengesProvider: React.FC<ChallengeProviderProps> = ({
     Cookies.set('challengesCompleted', String(challengesCompleted));
   }, [level, currentExperience, challengesCompleted]);
 
+  const updateLevel = async () => {
+    try {
+      await axios.put(`/api/update-level/${session.user.email}`, {
+        level: level + 1,
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const updatechallengesCompleted = async () => {
+    try {
+      await axios.put(`/api/update-challenges/${session.user.email}`, {
+        challengesCompleted: challengesCompleted + 1,
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const updatecurrentExperience = async (finalExperience) => {
+    try {
+      await axios.put(`/api/update-experience/${session.user.email}`, {
+        currentExperience: finalExperience,
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   const leveUp = () => {
     setLevel(level + 1);
     setIsLevelUpModalOpen(true);
+    updateLevel();
   };
 
   const closeLevelUpModal = () => {
@@ -95,6 +147,8 @@ export const ChallengesProvider: React.FC<ChallengeProviderProps> = ({
     setCurrentExperience(finalExperience);
     setChallengesCompleted(challengesCompleted + 1);
     setActiveChallenge(null);
+    updatecurrentExperience(finalExperience);
+    updatechallengesCompleted();
   };
 
   return (

@@ -83,6 +83,7 @@ const Challenge: React.FC<HomeProps> = ({ level, challengesCompleted, currentExp
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { level, currentExperience, challengesCompleted } = context.req.cookies;
+
   return {
     props: {
       level: Number(level ?? 1),

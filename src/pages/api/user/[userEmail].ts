@@ -1,31 +1,38 @@
-import { MongoClient, Db } from 'mongodb';
 import { NowRequest, NowResponse } from '@vercel/node';
+import { MongoClient, Db } from 'mongodb';
 import url from 'url';
 
 let cachedDb: Db = null;
 
 async function connectToDatabase(uri: string) {
-  if (cachedDb) return cachedDb;
+  if (cachedDb) {
+    return cachedDb;
+  }
 
-  const clienteDb = await MongoClient.connect(uri, {
+  const client = await MongoClient.connect(uri, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   });
 
   const dbName = url.parse(uri).pathname.substr(1);
-  const db = clienteDb.db(dbName);
+
+  const db = client.db(dbName);
+
   cachedDb = db;
 
   return db;
 }
 
 export default async (req: NowRequest, res: NowResponse) => {
+  const { query: { userEmail } } = req;
+
   const db = await connectToDatabase(process.env.MONGODB_URI);
 
   const collection = db.collection('users');
 
-  const top10 = await collection.find({ email: { $exists: true } })
-    .limit(10).sort({ level: -1 }).toArray();
+  const user = await collection.findOne({ email: userEmail });
 
-  return res.json(top10);
+  if (user) return res.status(200).json({ user });
+
+  return res.status(404).json({ error: 'user not found' });
 };
