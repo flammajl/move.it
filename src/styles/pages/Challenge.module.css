@@ -8,6 +8,12 @@
   flex-direction: column;
 }
 
+@media (max-width: 768px) {
+  .container {
+    max-width: 700px;
+  }
+}
+
 .container section {
   flex: 1;
 
@@ -15,4 +21,18 @@
   grid-template-columns: 1fr 1fr;
   gap: 6.25rem;
   align-content: center;
+}
+
+@media (max-width: 1200px) {
+  .container section {
+    gap: 2rem;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 700px) {
+  .container section {
+    grid-template-columns: 1fr;
+  }
 }

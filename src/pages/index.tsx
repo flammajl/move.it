@@ -22,7 +22,7 @@ const Home: React.FC = () => {
         <title>Início | Move.it</title>
       </Head>
       <section>
-        <div>
+        <div className={styles.logo}>
           <img src="/logo-bg.png" alt="" />
         </div>
 

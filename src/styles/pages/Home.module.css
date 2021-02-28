@@ -13,13 +13,38 @@
   gap: 7.5rem;
 }
 
+@media (max-width: 968px) {
+  .containerWrapper section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin: 0 1.5rem;
+  }
+}
+
+.logo img {
+  max-width: 100%;
+  display: block;
+}
+
+@media (max-width: 968px) {
+  .logo {
+    display: none;
+  }
+
+  .logo > img {
+    display: none;
+  }
+}
+
 .introWrapper {
   display: flex;
   align-items: center;
 }
 
 .intro {
-  display: flex; 
+  display: flex;
   flex-direction: column;
 }
 
