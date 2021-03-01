@@ -47,10 +47,6 @@ export const ChallengesProvider: React.FC<ChallengeProviderProps> = ({
   const experienceToNextLevel = Math.pow((level + 1) * 4, 2);
 
   useEffect(() => {
-    Notification.requestPermission();
-  }, []);
-
-  useEffect(() => {
     const getData = async () => {
       const response = await axios.get(`/api/user/${session.user.email}`);
 
@@ -120,12 +116,6 @@ export const ChallengesProvider: React.FC<ChallengeProviderProps> = ({
     setActiveChallenge(challenge);
 
     new Audio('/notification.mp3').play();
-
-    if (Notification.permission === 'granted') {
-      new Notification('Novo desafio', {
-        body: `Valendo ${challenge.amount} xp`,
-      });
-    }
   };
 
   const resetChallenge = () => {
